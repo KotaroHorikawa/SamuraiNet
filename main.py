@@ -15,7 +15,6 @@ from tqdm import tqdm
 from Net import ResNetCNN
 from torch.optim.lr_scheduler import CosineAnnealingLR
 import matplotlib.pyplot as plt
-from torch.optim.lr_scheduler import CosineAnnealingLR
 ############################
 
 # スクリプトの場所を取得（結果保存先の基準ディレクトリとして使用）

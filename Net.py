@@ -15,12 +15,6 @@ from torch.optim.lr_scheduler import CosineAnnealingLR
 import matplotlib.pyplot as plt
 
 class BasicBlock(nn.Module):
-    """
-    ResNetにインスパイアされた残差ブロックの実装。
-    GELUアクティベーションを使用。
-    チャネル数の変更はショートカット接続で処理。
-    ブロック内のストライドは常に1で、ダウンサンプリングは外部のMaxPoolで行う。
-    """
     def __init__(self, in_channels, out_channels):
         super(BasicBlock, self).__init__()
         # ブロック内の畳み込みストライドは常に1
@@ -133,19 +127,19 @@ class ResNetCNN(nn.Module):  # クラスの名前を分かりやすく変更
         h = self.block11(h)  # 残差ブロック1-1
         h = self.block12(h)  # 残差ブロック1-2
         h = self.pool1(h)    # プーリングで解像度を半分に
-        # h = self.dropout1(h)  # 現在はコメントアウト（使用しない）
+        h = self.dropout1(h)
 
         # ステージ2
         h = self.block21(h)  # 残差ブロック2-1
         h = self.block22(h)  # 残差ブロック2-2
         h = self.pool2(h)    # プーリングで解像度を半分に
-        # h = self.dropout2(h)  # 現在はコメントアウト（使用しない）
+        h = self.dropout2(h)
 
         # ステージ3
         h = self.block31(h)  # 残差ブロック3-1
         h = self.block32(h)  # 残差ブロック3-2
         h = self.pool3(h)    # プーリングで解像度を半分に
-        # h = self.dropout3(h)  # 現在はコメントアウト（使用しない）
+        h = self.dropout3(h)
 
         # ステージ4 - 現在はコメントアウト（使用しない）
         # h = self.block4(h)
